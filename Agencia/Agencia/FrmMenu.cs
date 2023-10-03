@@ -17,11 +17,6 @@ namespace Agencia
             InitializeComponent();
         }
 
-        private void FrmMenu_Load(object sender, EventArgs e)
-        {
-          
-        }
-
         private void btnTaller_Click(object sender, EventArgs e)
         {
             FrmTaller frmTaller = new FrmTaller();

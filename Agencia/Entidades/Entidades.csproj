@@ -42,10 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntidadesHerramientas.cs" />
-    <Compile Include="EntidadesPermisos.cs" />
+    <Compile Include="EntidadesPermiso.cs" />
     <Compile Include="EntidadesProducto.cs" />
     <Compile Include="EntidadesUsuarios.cs" />
-    <Compile Include="EntidadServicios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

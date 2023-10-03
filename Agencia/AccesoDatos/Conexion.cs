@@ -11,7 +11,7 @@ namespace AccesoDatos
 {
     public class Conexion
     {
-        private MySqlConnection _connection;
+        public MySqlConnection connection;
 
         public Conexion(string servidor, string usuario, string password, string database, uint puerto)
         {
@@ -22,24 +22,26 @@ namespace AccesoDatos
             CadenaConexion.Database = database;
             CadenaConexion.Port = puerto;
 
-            _connection = new MySqlConnection(CadenaConexion.ToString());
+            connection = new MySqlConnection(CadenaConexion.ToString());
         }
 
         public void EjecutarConsulta(string consulta)
         {
             try
             {
-                _connection.Open();
-                using (MySqlCommand comando = new MySqlCommand(consulta, _connection))
+                connection.Open();
+                using (MySqlCommand comando = new MySqlCommand(consulta, connection))
                 {
                     comando.ExecuteNonQuery();
                     Console.WriteLine("Consulta ejecutada correctamente");
                 }
-                _connection.Close();
+                connection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("Error al ejecutar la consulta: ", ex.Message);
+                connection.Close();
+                //throw ex;
+
             }
         }
 
@@ -50,19 +52,20 @@ namespace AccesoDatos
             DataTable dataTable = new DataTable();
             try
             {
-                _connection.Open();
-                using (MySqlDataAdapter adaptador = new MySqlDataAdapter(consulta, _connection))
+                connection.Open();
+                using (MySqlDataAdapter adaptador = new MySqlDataAdapter(consulta, connection))
                 {
                     //Se llama al método Fill del adaptador, que ejecuta la consulta y llena el dataTable con los resultados obtenidos
                     //de la base de datos.
                     adaptador.Fill(dataTable);
                     Console.WriteLine("Consulta ejecutada correctamente");
                 }
-                _connection.Close();
+                connection.Close();
             }
 
             catch (Exception ex)
             {
+                connection.Close();
                 Console.WriteLine("Error al ejecutar la consulta: ", ex.Message);
             }
             return dataTable;

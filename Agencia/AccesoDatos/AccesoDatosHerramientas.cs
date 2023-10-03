@@ -29,7 +29,6 @@ namespace AccesoDatos
                 {
                     Id = Convert.ToInt32(renglon["id"]),
                     Nombre = renglon["nombre"].ToString(),
-                    Medida = renglon["medida"].ToString(),
                     Marca = renglon["marca"].ToString(),
                     Descripcion = renglon["descripcion"].ToString()
                 };
@@ -40,15 +39,16 @@ namespace AccesoDatos
 
         public void GuardarHerramienta(EntidadesHerramientas nuevosDatos)
         {
-            string consulta = string.Format("insert into herramientas values(null, '{0}', '{1}', '{2}', '{3}')",
-                nuevosDatos.Nombre, nuevosDatos.Medida, nuevosDatos.Marca, nuevosDatos.Descripcion);
+            string consulta = string.Format("insert into herramientas values(null, '{0}', '{1}', '{2}')",
+                nuevosDatos.Nombre, nuevosDatos.Marca, nuevosDatos.Descripcion);
             conexion.EjecutarConsulta(consulta);
         }
 
         public void ActualizarHerramienta(EntidadesHerramientas nuevosDatos)
         {
-            string consulta = string.Format("update herramientas set nombre = '{0}', medida = '{1}', marca = '{2}', " +
-                "descripcion = '{3}'", nuevosDatos.Nombre, nuevosDatos.Medida, nuevosDatos.Marca, nuevosDatos.Descripcion);
+            string consulta = string.Format("update herramientas set nombre = '{0}', marca = '{1}', " +
+                "descripcion = '{2}' where id = {3}", nuevosDatos.Nombre, nuevosDatos.Marca, nuevosDatos.Descripcion, 
+                nuevosDatos.Id);
             conexion.EjecutarConsulta(consulta);
         }
 

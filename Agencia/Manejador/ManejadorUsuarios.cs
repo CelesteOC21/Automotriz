@@ -17,6 +17,17 @@ namespace Manejador
             _accesoDatosUsaurio = new AccesoDatosUsuario();
         }
 
+        public bool VerificarUsuarios(string usuario, string clave)
+        {
+            bool resultado = false;
+            int cuenta = _accesoDatosUsaurio.Comprobacion(usuario, clave);
+            if(cuenta > 0)
+            {
+                resultado = true;
+            }
+            return resultado;
+        }
+
         public List<EntidadesUsuarios> ObtenerUsuario(string valor)
         {
             return _accesoDatosUsaurio.ObtenerDatos(valor);
@@ -34,7 +45,7 @@ namespace Manejador
 
         public void ActualizarUsuario(EntidadesUsuarios datosUsuario)
         {
-            _accesoDatosUsaurio.GuardarUsuarios(datosUsuario);
+            _accesoDatosUsaurio.ActualizarUsuarios(datosUsuario);
         }
 
         public Tuple<bool, string> ValidarDatosUsuario(EntidadesUsuarios nuevosDatos)

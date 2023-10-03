@@ -29,8 +29,9 @@ namespace AccesoDatos
                 {
                     Id = Convert.ToInt32(renglon["id"]),
                     Nombre = renglon["nombre"].ToString(),
-                    Descripcion = renglon["descripcion"].ToString(),
-                    Marca = renglon["marca"].ToString()
+                    Medida = renglon["medida"].ToString(),
+                    Marca = renglon["marca"].ToString(),
+                    Descripcion = renglon["descripcion"].ToString()
                 };
                 ListaDatosProducto.Add(EntidadProducto);
             }
@@ -39,19 +40,19 @@ namespace AccesoDatos
 
         public void GuardarProducto(EntidadesProducto nuevosDatos)
         {
-            string consulta = string.Format("insert into producto values(null, '{0}', '{1}', '{2}')",
-                nuevosDatos.Nombre, nuevosDatos.Descripcion, nuevosDatos.Marca);
+            string consulta = string.Format("insert into producto values(null, '{0}', '{1}', '{2}', '{3}')",
+                nuevosDatos.Nombre, nuevosDatos.Medida, nuevosDatos.Marca, nuevosDatos.Descripcion);
             conexion.EjecutarConsulta(consulta);
         }
 
         public void ActualizarProducto(EntidadesProducto nuevosDatos)
         {
-            string consulta = string.Format("update producto set nombre = '{0}', descripcion = '{1}', marca = '{2}'", 
-                nuevosDatos.Nombre, nuevosDatos.Descripcion, nuevosDatos.Marca);
+            string consulta = string.Format("update producto set nombre = '{0}', medida = '{1}', marca = '{2}', descripcion = '{3}' " +
+                "where id = {4}", nuevosDatos.Nombre, nuevosDatos.Medida,  nuevosDatos.Marca, nuevosDatos.Descripcion, nuevosDatos.Id);
             conexion.EjecutarConsulta(consulta);
         }
 
-        public void EliminarProdcuto(int IdProducto)
+        public void EliminarProducto(int IdProducto)
         {
             string consulta = string.Format("delete from producto where id = {0}", IdProducto);
             conexion.EjecutarConsulta(consulta);

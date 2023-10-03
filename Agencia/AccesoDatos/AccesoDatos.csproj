@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatosHerramientas.cs" />
+    <Compile Include="AccesoDatosPermisos.cs" />
     <Compile Include="AccesoDatosProducto.cs" />
     <Compile Include="AccesoDatosUsuario.cs" />
     <Compile Include="Conexion.cs" />

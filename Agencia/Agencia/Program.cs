@@ -16,7 +16,7 @@ namespace Agencia
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmAdministrador());
+            Application.Run(new FrmLogin());
         }
     }
 }
